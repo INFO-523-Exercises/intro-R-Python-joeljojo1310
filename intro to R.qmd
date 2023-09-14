@@ -5,31 +5,20 @@ editor: visual
 author: "Joel Jojo"
 ---
 
-## Summary
+## Summary for the exercise
 
-This exercise provides an introduction to R. It covers all the basic commands to use R language and packages.
+This exercise provides an introduction to R. It covers all the basic commands in R language, data structures, and packages.
 
-## Running Code
+This serves as a warm-up to get familiarized with the R language as well as the technologies such as PositCloud and GitHub.
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+#### Checking the version of R
 
 ```{r}
 R.version
 
 ```
+
+#### DMwR2: Functions and Data for the Second Edition of "Data Mining with R"
 
 ```{r}
 install.packages("DMwR2")
@@ -44,18 +33,25 @@ help(package="DMwR2")
 library(DMwR2)
 ```
 
+#### Loading the algae dataset
+
 ```{r}
-data(algae) # load algae dataset
+data(algae) 
 algae  
 ```
 
+#### Finding rows with too many NAs
+
 ```{r}
-manyNAs(algae) # find rows with too many NAs
+manyNAs(algae) 
+
 ```
 
 ```{r}
 library()
 ```
+
+####  Below command used to list all the currently loaded packages in your R session
 
 ```{r}
 (.packages())
@@ -75,6 +71,8 @@ detach("package:dbplyr", unload=TRUE)
 library(dplyr)#load wanted library
 ```
 
+#### Checking the list of installed packages 
+
 ```{r}
 installed.packages() 
 ```
@@ -83,13 +81,19 @@ installed.packages()
 old.packages()
 ```
 
+#### Used to update all installed packages to their latest versions
+
 ```{r,error=TRUE}
 update.packages(ask = FALSE)
 ```
 
+#### When you want to see if a package you need to use has already been made
+
 ```{r}
 RSiteSearch('neural networks')
 ```
+
+#### Used to show the current workign directory and to set the working directory
 
 ```{r}
 getwd()
@@ -98,6 +102,8 @@ getwd()
 ```{r}
 setwd("/cloud/project")
 ```
+
+#### Below code covers the use of variables and arithmetic operators
 
 ```{r}
 vat <- 0.2
@@ -126,6 +132,8 @@ y
 z
 ```
 
+#### ls() and objects() lists the variables created or currently in use
+
 ```{r}
 ls()
 
@@ -135,9 +143,13 @@ ls()
 objects()
 ```
 
+#### Removes a variable to save space
+
 ```{r}
 rm(vat)
 ```
+
+#### Below functions help carry out certain operations such as mean and max from a list or from a sample
 
 ```{r}
 max(4, 5, 6, 12, -4)
@@ -159,6 +171,8 @@ mean(sample(1:100, 30))
 help(sample)
 ```
 
+#### set.seed() function helps generate random numbers in a controlled environment
+
 ```{r}
 set.seed(1) #the seed determines the starting point used in generating a sequence of pseudo random numbers #set.seed() has global scope, meaning it affects all random number generators used/called in your program.
 #there is a function to remove the seed:rm(.Random.seed, envir=.GlobalEnv)
@@ -179,9 +193,13 @@ rnorm(1)
 rnorm(1)
 ```
 
+#### Checking if an object by the name "se" exists
+
 ```{r}
 exists("se")
 ```
+
+#### Creating a function that generates the standard error of a sample
 
 ```{r}
 se <- function(x){
@@ -194,6 +212,8 @@ se <- function(x){
 ```{r}
 exists("se")
 ```
+
+#### Function to convert length in meters to other measures of length and a few operations surrounding the function
 
 ```{r}
 convMeters <- function (x, to="inch"){
@@ -215,6 +235,8 @@ convMeters(56.2, "yard")
 ```{r}
 convMeters(to="yard", 56.2)
 ```
+
+#### Factors and operations for the same
 
 ```{r}
 g <-c('f', 'm', 'f', 'f', 'f', 'm', 'm', 'f')
@@ -275,14 +297,24 @@ prop.table(t) #overall
 prop.table(t) * 100
 ```
 
+### Data Structures
+
+### Vectors
+
+#### Creating a vector
+
 ```{r}
 v <- c(2, 5, 3, 4)
 length(v)
 ```
 
+#### Checking the data type of the elements in the vector
+
 ```{r}
 mode(v)
 ```
+
+#### Mixing strings and numbers makes it in to a string vector
 
 ```{r}
 v <- c(2, 5, 3, 4, 'me')
@@ -293,6 +325,8 @@ mode(v)
 v
 ```
 
+#### Missing vakues can be substituted with NA
+
 ```{r}
 v <- c(2, 5, 3, 4, NA)
 mode(v)
@@ -302,6 +336,8 @@ mode(v)
 v
 ```
 
+#### Boolean values can be added to the vector as well
+
 ```{r}
 b <- c(TRUE, FALSE, NA, TRUE)
 mode(b)
@@ -310,6 +346,8 @@ mode(b)
 ```{r}
 b
 ```
+
+#### Few other operations surrounding vectors
 
 ```{r}
 b[3]
@@ -348,6 +386,8 @@ b2
 sqrt(v)
 ```
 
+#### Vector arithmetic
+
 ```{r}
 v1 <- c(3, 6, 9)
 v2 <- c(1, 4, 8)
@@ -375,6 +415,8 @@ v1+v3#the recycling rule makes v3 [1, 4, 1]
 2*v1
 ```
 
+#### Function to add the numbers in a vector and return the sum
+
 ```{r}
 mysum <- function (x){
   sum <- 0
@@ -386,6 +428,8 @@ mysum <- function (x){
 
 (mysum (c(1, 2, 3)))
 ```
+
+#### () helps print the output of the code in the console
 
 ```{r}
 (x <-1:10)
@@ -408,6 +452,8 @@ mysum <- function (x){
 (seq(from=1, to=5, length=4)) # 4 values between 1 and 5 inclusive, even intervals/steps
 ```
 
+#### rep(x,n) displays x, the value, n  number of times
+
 ```{r}
 (rep(5, 10))
 ```
@@ -427,6 +473,8 @@ mysum <- function (x){
 ```{r}
 (rep(1:2, each=3))
 ```
+
+#### gl(x,n,m) displays x levels, repeats it n number of times  and generates m number of values
 
 ```{r}
 gl(3, 5) #three levels, each repeat 5 times
@@ -464,17 +512,26 @@ n
 
 ```
 
+### **Sub-setting**
+
+#### Flexible ways of select values from a vector
+
 ```{r}
 x <- c(0, -3, 4, -1, 45, 90, -5)
 #select all elements that is greater than 0
 (gtzero <- x[x>0])
 
+
 ```
+
+#### Use `|` (or), and `&` (and) operators:
 
 ```{r}
 x <- c(0, -3, 4, -1, 45, 90, -5)
 (x[x<=-2 | x>5])        
 ```
+
+#### Use a vector index:
 
 ```{r}
 (x[x>40 & x<100])
@@ -497,6 +554,8 @@ x <- c(0, -3, 4, -1, 45, 90, -5)
 (x[1:3]) #select the 1st to the 3rd elements in the vector
 ```
 
+#### Use negative index to exclude elements:
+
 ```{r}
 x <- c(0, -3, 4, -1, 45, 90, -5)
 (x[-1]) #select all but the first element
@@ -510,15 +569,25 @@ x <- c(0, -3, 4, -1, 45, 90, -5)
 (x[-(1:3)])
 ```
 
+### **Named elements**
+
+Elements in a vector can have names.
+
+Assign names to vector elements
+
 ```{r}
 x <- c(0, -3, 4, -1, 45, 90, -5)
 names(x) <- c('s1', 's2', 's3', 's4', 's5', 's6', 's7')
 x
 ```
 
+#### Create a vector with named elements:
+
 ```{r}
 (pH <- c(area1=4.5, area2=5.7, area3=9.8, mud=7.2))
 ```
+
+#### Use individual names to reference/select elements:
 
 ```{r}
 pH['mud']
@@ -527,6 +596,8 @@ pH['mud']
 ```{r}
 pH[c('area1', 'mud')]
 ```
+
+#### ...but can not use directly element names to exclude or select a range of elements:
 
 ```{r,error=TRUE}
 x[-s1] #results in error
@@ -544,6 +615,8 @@ x[s1:s7] #results in error
 x[c('s1':'s7')] #results in error
 ```
 
+#### Empty index means to select all:
+
 ```{r}
 pH[]
 ```
@@ -551,6 +624,8 @@ pH[]
 ```{r}
 pH
 ```
+
+#### Use this method to reset a vector to 0:
 
 ```{r}
 pH[] <- 0
@@ -561,6 +636,10 @@ pH
 pH<- 0
 pH
 ```
+
+#### Matrices
+
+To create a matrix:
 
 ```{r}
 m <- c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23)
@@ -593,14 +672,20 @@ is.matrix(m)
 is.array(m)
 ```
 
+#### By default, the elements are put in matrix by columns. Use `byrow=TRUE` to do it the other way:
+
 ```{r}
 (m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5, byrow = TRUE))
 ```
+
+#### Creating a matrix with two columns which stores age and grades
 
 ```{r}
 test <-matrix(c(11, 11, 12, 13, 14, 9, 8, 5, 5, 6, 7, 8, 4, 3), 7, 2)
 test
 ```
+
+#### Access matrix elements using position indexes
 
 ```{r}
 m <- c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23)
@@ -612,6 +697,10 @@ m
 ```{r}
 m[2, 3]#the element at row 2 and column 3
 ```
+
+#### Sub-setting a matrix is similar to sub-setting on a vector.
+
+The result is a value (a value is a vector), a vector, or a matrix:
 
 ```{r}
 (s<- m[2, 1]) # select one value
@@ -649,6 +738,8 @@ is.vector(v)
 is.matrix(v)
 ```
 
+#### Use `drop = FALSE` to keep the results as a matrix (not vectors like shown above)
+
 ```{r}
 m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5)
 (m<-m [, 2, drop = FALSE])
@@ -657,6 +748,8 @@ m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5)
 ```{r}
 is.matrix(m)
 ```
+
+#### `cbind()` and `rbind()`: join together two or more vectors or matrices, by column, or by row, respectively:
 
 ```{r}
 cbind (c(1,2,3), c(4, 5, 6))
@@ -713,10 +806,18 @@ sales['store1', '1qrt']
 sales['store2', c('1qrt', '4qrt')]
 ```
 
+#### Arrays
+
+Arrays are similar to matrices, but arrays can have more than 2 dimensions
+
+3-D array:
+
 ```{r}
 a <- array(1:48, dim= c(4, 3, 2))
 a
 ```
+
+#### Select array elements using indexes, results may be a value, a vector, a matrix or an array, depending on the use of `drop=FALSE`:
 
 ```{r}
 a [1, 3, 2]
@@ -738,6 +839,10 @@ a [4, 3, ]
 a [c(2, 3), , -2]
 ```
 
+#### Assign names to dimensions of an array.
+
+`[[]]` selects one dimension:
+
 ```{r}
 dimnames(a)[[1]] <-c("1qrt", "2qrt", "3qrt", "4qrt")
 dimnames(a)[[2]] <-c("store1", "store2", "store3")
@@ -745,12 +850,18 @@ dimnames(a)[[3]] <-c("2017", "2018")
 a
 ```
 
+#### Alternatively, use `list()` to specify names:
+
 ```{r}
 ar <- array(data     = 1:27,
             dim      = c(3, 3, 3),
             dimnames = list(c("a", "b", "c"),                                                                    c("d", "e", "f"),                                                                       c("g", "h", "i")))
 ar
 ```
+
+#### Split array into matrices
+
+Perform arithmetic operations on matrices, note the recycling rules apply:
 
 ```{r}
 matrix1 <- ar[,,g]
@@ -799,6 +910,12 @@ matrix1/c(1, 2, 3)
 matrix1/c(1, 2, 3, 1, 2, 3, 1, 2, 3)
 ```
 
+#### Lists
+
+Lists are vectors too, but they are \'recursive\'
+
+Use `list$component_name` to access a component in a *list* can not be used on atomic vectors.
+
 ```{r}
 mylist <- list(stud.id=34453,
                stud.name="John",
@@ -829,6 +946,12 @@ mylist[handle]
 mylist[["stud.id"]]
 ```
 
+### **Subset with `[`**
+
+### **Extract one item with `[[`**
+
+### **Interact with `$`**
+
 ```{r}
 mylist <- list(stud.id=34453,
                stud.name="John",
@@ -840,6 +963,8 @@ mylist$stud.marks
 ```{r}
 mylist$stud.marks[2]
 ```
+
+Change names:
 
 ```{r}
 names(mylist)
@@ -855,10 +980,14 @@ names(mylist)
 mylist
 ```
 
+Add new component:
+
 ```{r}
 mylist$parents.names <- c('Ana', "Mike")
 mylist
 ```
+
+Use `c()` to concatenate two lists:
 
 ```{r}
 newlist <- list(age=19, sex="male");
@@ -909,11 +1038,19 @@ is.atomic(mylist)
 is.list(unlist(mylist))
 ```
 
+## **Data Frames**
+
+The recommended data structure for tables (2-D), data frames are a special kind of list: each row is an observation, each column is an attribute.
+
+Create a dataframe
+
 ```{r}
 my.dataframe <- data.frame(site=c('A', 'B', 'A','A', 'B'),
                            season=c('winter', 'summer', 'summer', 'spring', 'fall'),                               ph = c(7.4, 6.3, 8.6, 7.2, 8.9))
 my.dataframe
 ```
+
+### **Indexes and names**
 
 ```{r}
 my.dataframe <- data.frame(site=c('A', 'B', 'A','A', 'B'),
@@ -941,6 +1078,10 @@ my.dataframe[my.dataframe$ph>7, 'site']
 my.dataframe[my.dataframe$ph>7, c('site', 'ph')]
 ```
 
+### **Use `subset()` to query a data frame**
+
+`subset()` can only query, it can not be used to change values in the data frame:
+
 ```{r}
 subset(my.dataframe, ph>7)
 ```
@@ -953,6 +1094,8 @@ subset(my.dataframe, ph>7, c("site", "ph"))
 subset(my.dataframe[1:2,], ph>7, c(site, ph))
 ```
 
+To change values in data frame - add 1 to `summer` `ph`:
+
 ```{r}
 my.dataframe[my.dataframe$season=='summer', 'ph'] <- my.dataframe[my.dataframe$season=='summer', 'ph'] + 1 
                                                                   my.dataframe[my.dataframe$season=='summer', 'ph']
@@ -964,16 +1107,22 @@ my.dataframe[my.dataframe$season=='summer' & my.dataframe$ph>8, 'ph'] <- my.data
 my.dataframe[my.dataframe$season=='summer', 'ph']                             
 ```
 
+### **Add a column**
+
 ```{r}
 my.dataframe$NO3 <- c(234.5, 123.4, 456.7, 567.8, 789.0)
 my.dataframe
 ```
+
+To remove a column
 
 ```{r}
 #my.dataframe$NO3<-NULL
 my.dataframe <- my.dataframe[, -4]
 my.dataframe
 ```
+
+To check the structure of the data frame
 
 ```{r}
 str(my.dataframe)
@@ -991,11 +1140,15 @@ ncol(my.dataframe)
 dim(my.dataframe)
 ```
 
+To edit a data frame
+
 ```{r,error=TRUE}
  edit(my.dataframe) #this brings up a data editor
 
  View(my.dataframe) #this brings up a uneditable tab that display the data for you to view.
 ```
+
+to update name of the columns
 
 ```{r}
 names(my.dataframe)
@@ -1011,10 +1164,14 @@ names(my.dataframe)[3] <- 'ph'
 my.dataframe 
 ```
 
+### Tibbles
+
 ```{r}
 install.packages("tibble")
                                                                   library(tibble)
 ```
+
+#### Create a tibble
 
 ```{r}
 my.tibble <- tibble(TempCels = sample(-10:40, size=100, replace=TRUE), 
@@ -1022,6 +1179,8 @@ my.tibble <- tibble(TempCels = sample(-10:40, size=100, replace=TRUE),
                     Location = rep(letters[1:2], each=50))
 my.tibble
 ```
+
+Use the penguins data frame from the `palmerpenguins` package:
 
 ```{r}
 install.packages("palmerpenguins")
@@ -1031,6 +1190,8 @@ dim(penguins)
 class(penguins)
 penguins
 ```
+
+### **Convert a data frame to a tibble**
 
 ```{r}
 pe <-as_tibble(penguins)
@@ -1073,6 +1234,8 @@ class(x)
 mode(x)
 ```
 
+A set of \`is.xxx()\` functions can be used to check the data structure of an object
+
 ```{r}
 is.array(x)
 ```
@@ -1100,6 +1263,8 @@ is.vector(x)
 ```{r}
 typeof(x)
 ```
+
+Subsetting a tibble results in a smaller tibble
 
 ```{r}
 class(pe[1:15, c("bill_length_mm", "bill_depth_mm")])

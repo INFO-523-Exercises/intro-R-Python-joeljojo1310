@@ -83,17 +83,12 @@ installed.packages()
 old.packages()
 ```
 
-```{r}
+```{r,error=TRUE}
 update.packages(ask = FALSE)
 ```
 
 ```{r}
 RSiteSearch('neural networks')
-```
-
-```{r}
-save(my.function, mydataset, file="path_to_mysession.RData")
-load("path_to_mysession.RData")
 ```
 
 ```{r}
@@ -241,7 +236,7 @@ g <- factor(c('f', 'm', 'f', 'f', 'f', 'm', 'm', 'f'))
 table(g)
 ```
 
-```{r}
+```{r,error=TRUE}
 a <- factor(c('adult', 'juvenile','adult', 'juvenile','adult', 'juvenile','juvenile'))
 table(a, g)
 ```
@@ -371,7 +366,7 @@ v1-v2 #subtraction
 v1/v2 #divsion
 ```
 
-```{r}
+```{r,error=TRUE}
 v3 <- c(1, 4)
 v1+v3#the recycling rule makes v3 [1, 4, 1]
 ```
@@ -533,11 +528,11 @@ pH['mud']
 pH[c('area1', 'mud')]
 ```
 
-```{r}
+```{r,error=TRUE}
 x[-s1] #results in error
 ```
 
-```{r}
+```{r,error=TRUE}
 x[-"s1"] #results in error
 ```
 
@@ -545,7 +540,7 @@ x[-"s1"] #results in error
 x[s1:s7] #results in error
 ```
 
-```{r}
+```{r,error=TRUE}
 x[c('s1':'s7')] #results in error
 ```
 
@@ -605,4 +600,585 @@ is.array(m)
 ```{r}
 test <-matrix(c(11, 11, 12, 13, 14, 9, 8, 5, 5, 6, 7, 8, 4, 3), 7, 2)
 test
+```
+
+```{r}
+m <- c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23)
+#then 'organize' the vector as a matrix
+dim(m) <- c(2, 5)#make the vector a 2 by 5 matrix, 2x5 must = lenght of the vector
+m
+```
+
+```{r}
+m[2, 3]#the element at row 2 and column 3
+```
+
+```{r}
+(s<- m[2, 1]) # select one value
+```
+
+```{r}
+(m<- m [c(1,2), -c(3, 5)]) #select 1st row and 1st, 2nd, and 4th columns: result is a vector
+```
+
+```{r}
+(m [1, ]) #select complete row or column: 1st row, result is a vector
+```
+
+```{r}
+(v<-m [, 1]) # 1st column, result is a vector
+```
+
+```{r}
+is.vector(m)
+```
+
+```{r}
+is.matrix(m)
+```
+
+```{r}
+is.vector(s)
+```
+
+```{r}
+is.vector(v)
+```
+
+```{r}
+is.matrix(v)
+```
+
+```{r}
+m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5)
+(m<-m [, 2, drop = FALSE])
+```
+
+```{r}
+is.matrix(m)
+```
+
+```{r}
+cbind (c(1,2,3), c(4, 5, 6))
+```
+
+```{r}
+rbind (c(1,2,3), c(4, 5, 6))
+```
+
+```{r}
+m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5)
+(a <- rbind (c(1,2,3,4,5), m))
+```
+
+```{r}
+is.array(a)
+```
+
+```{r}
+is.matrix(a)
+```
+
+```{r}
+m1 <- matrix(rep(10, 9), 3, 3)
+m2 <- cbind(c(1, 2, 3), c(4, 5, 6))
+
+
+```
+
+```{r}
+m3 <- cbind(m1[, 1], m2[, 2])
+
+
+
+
+```
+
+```{r}
+m4 <- cbind(m1[, 1], m2[, 2])
+```
+
+```{r}
+sales <- matrix(c(10, 30, 40, 50, 43, 56, 21, 30), 2, 4, byrow=TRUE)
+colnames(sales) <- c('1qrt', '2qrt', '3qrt', '4qrt')
+rownames(sales) <- c('store1', 'store2')
+sales
+```
+
+```{r}
+sales['store1', '1qrt']
+```
+
+```{r}
+sales['store2', c('1qrt', '4qrt')]
+```
+
+```{r}
+a <- array(1:48, dim= c(4, 3, 2))
+a
+```
+
+```{r}
+a [1, 3, 2]
+```
+
+```{r}
+a [1, , 2]
+```
+
+```{r}
+a [1, , 2, drop=FALSE]
+```
+
+```{r}
+a [4, 3, ]
+```
+
+```{r}
+a [c(2, 3), , -2]
+```
+
+```{r}
+dimnames(a)[[1]] <-c("1qrt", "2qrt", "3qrt", "4qrt")
+dimnames(a)[[2]] <-c("store1", "store2", "store3")
+dimnames(a)[[3]] <-c("2017", "2018")
+a
+```
+
+```{r}
+ar <- array(data     = 1:27,
+            dim      = c(3, 3, 3),
+            dimnames = list(c("a", "b", "c"),                                                                    c("d", "e", "f"),                                                                       c("g", "h", "i")))
+ar
+```
+
+```{r}
+matrix1 <- ar[,,g]
+```
+
+```{r}
+matrix1 <- ar[,,'g']
+matrix1
+```
+
+```{r}
+matrix2 <- ar[,,'h']
+matrix2
+```
+
+```{r}
+sum <-matrix1 + matrix2
+sum
+```
+
+```{r}
+matrix1*3
+```
+
+```{r}
+matrix1
+```
+
+```{r,error=TRUE}
+matrix1*c(2, 3)
+```
+
+```{r}
+matrix1*c(2,3,2,3,2,3,2,3,2)
+```
+
+```{r}
+matrix1*c(1, 2, 3)
+```
+
+```{r}
+matrix1/c(1, 2, 3)
+```
+
+```{r}
+matrix1/c(1, 2, 3, 1, 2, 3, 1, 2, 3)
+```
+
+```{r}
+mylist <- list(stud.id=34453,
+               stud.name="John",
+               stud.marks= c(13, 3, 12, 15, 19)
+               )
+
+mylist$stud.id
+```
+
+```{r}
+mylist[1]
+```
+
+```{r}
+mylist[[1]]
+```
+
+```{r}
+mylist["stud.id"]
+```
+
+```{r}
+handle <- "stud.id"
+mylist[handle]
+```
+
+```{r}
+mylist[["stud.id"]]
+```
+
+```{r}
+mylist <- list(stud.id=34453,
+               stud.name="John",
+               stud.marks= c(13, 3, 12, 15, 19)
+               )
+mylist$stud.marks
+```
+
+```{r}
+mylist$stud.marks[2]
+```
+
+```{r}
+names(mylist)
+```
+
+```{r}
+names(mylist) <- c('id','name','marks')
+
+names(mylist)
+```
+
+```{r}
+mylist
+```
+
+```{r}
+mylist$parents.names <- c('Ana', "Mike")
+mylist
+```
+
+```{r}
+newlist <- list(age=19, sex="male");
+expandedlist <-c(mylist, newlist)
+expandedlist
+```
+
+```{r}
+length(expandedlist)
+```
+
+```{r}
+expandedlist <- expandedlist[-5]
+expandedlist <- expandedlist[c(-1,-5)]
+expandedlist$parents.names <- NULL
+expandedlist[['marks']] <- NULL
+```
+
+```{r}
+mylist
+```
+
+```{r}
+unlist(mylist)
+```
+
+```{r}
+mode(mylist)
+```
+
+```{r}
+mode(unlist(mylist))
+```
+
+```{r}
+is.vector(unlist(mylist)) #atomic list with names
+```
+
+```{r}
+is.list(mylist)
+```
+
+```{r}
+is.atomic(mylist)
+```
+
+```{r}
+is.list(unlist(mylist))
+```
+
+```{r}
+my.dataframe <- data.frame(site=c('A', 'B', 'A','A', 'B'),
+                           season=c('winter', 'summer', 'summer', 'spring', 'fall'),                               ph = c(7.4, 6.3, 8.6, 7.2, 8.9))
+my.dataframe
+```
+
+```{r}
+my.dataframe <- data.frame(site=c('A', 'B', 'A','A', 'B'),
+                           season=c('winter', 'summer', 'summer', 'spring', 'fall'),                               ph = c(7.4, 6.3, 8.6, 7.2, 8.9))
+my.dataframe[3, 2]
+```
+
+```{r}
+my.dataframe[['site']]
+```
+
+```{r}
+my.dataframe['site']
+```
+
+```{r}
+my.dataframe[my.dataframe$ph>7, ]
+```
+
+```{r}
+my.dataframe[my.dataframe$ph>7, 'site']
+```
+
+```{r}
+my.dataframe[my.dataframe$ph>7, c('site', 'ph')]
+```
+
+```{r}
+subset(my.dataframe, ph>7)
+```
+
+```{r}
+subset(my.dataframe, ph>7, c("site", "ph"))
+```
+
+```{r}
+subset(my.dataframe[1:2,], ph>7, c(site, ph))
+```
+
+```{r}
+my.dataframe[my.dataframe$season=='summer', 'ph'] <- my.dataframe[my.dataframe$season=='summer', 'ph'] + 1 
+                                                                  my.dataframe[my.dataframe$season=='summer', 'ph']
+```
+
+```{r}
+my.dataframe[my.dataframe$season=='summer' & my.dataframe$ph>8, 'ph'] <- my.dataframe[my.dataframe$season=='summer' & my.dataframe$ph>8, 'ph'] + 1                                                              
+        
+my.dataframe[my.dataframe$season=='summer', 'ph']                             
+```
+
+```{r}
+my.dataframe$NO3 <- c(234.5, 123.4, 456.7, 567.8, 789.0)
+my.dataframe
+```
+
+```{r}
+#my.dataframe$NO3<-NULL
+my.dataframe <- my.dataframe[, -4]
+my.dataframe
+```
+
+```{r}
+str(my.dataframe)
+```
+
+```{r}
+nrow(my.dataframe)
+```
+
+```{r}
+ncol(my.dataframe)
+```
+
+```{r}
+dim(my.dataframe)
+```
+
+```{r}
+ edit(my.dataframe) #this brings up a data editor
+
+ View(my.dataframe) #this brings up a uneditable tab that display the data for you to view.
+```
+
+```{r}
+names(my.dataframe)
+```
+
+```{r}
+names(my.dataframe) <- c('area', 'season', 'P.h.')
+my.dataframe
+```
+
+```{r}
+names(my.dataframe)[3] <- 'ph'
+my.dataframe 
+```
+
+```{r}
+install.packages("tibble")
+                                                                  library(tibble)
+```
+
+```{r}
+my.tibble <- tibble(TempCels = sample(-10:40, size=100, replace=TRUE), 
+                    TempFahr = TempCels*9/5+32,
+                    Location = rep(letters[1:2], each=50))
+my.tibble
+```
+
+```{r}
+install.packages("palmerpenguins")
+library(palmerpenguins)
+data(penguins)
+dim(penguins)
+class(penguins)
+penguins
+```
+
+```{r}
+pe <-as_tibble(penguins)
+class(pe)
+```
+
+```{r}
+pe
+```
+
+```{r}
+x <- 1:16
+mode(x)
+```
+
+```{r}
+dim(x) <- c(4,4)
+class(x) 
+```
+
+```{r}
+is.numeric(x)
+```
+
+```{r}
+mode(x) <- "character"
+mode(x)
+```
+
+```{r}
+class(x)
+```
+
+```{r}
+x <- factor(x)
+class(x)
+```
+
+```{r}
+mode(x)
+```
+
+```{r}
+is.array(x)
+```
+
+```{r}
+is.list(x)
+```
+
+```{r}
+is.data.frame(x)
+```
+
+```{r}
+is.matrix(x)
+```
+
+```{r}
+is_tibble(x)
+```
+
+```{r}
+is.vector(x)
+```
+
+```{r}
+typeof(x)
+```
+
+```{r}
+class(pe[1:15, c("bill_length_mm", "bill_depth_mm")])
+```
+
+```{r}
+class(penguins[1:15, c("bill_length_mm", "bill_depth_mm")])
+```
+
+```{r}
+class(pe[1:15, c("bill_length_mm")])
+```
+
+```{r}
+class(penguins[1:15, c("bill_length_mm")])
+```
+
+```{r}
+install.packages("dplyr")
+library(dplyr)
+```
+
+```{r}
+select(filter(pe, species=="Adelie"), bill_length_mm, bill_depth_mm)
+```
+
+```{r}
+filter(select(pe, bill_length_mm, bill_depth_mm, species), species=="Adelie")
+```
+
+```{r}
+pe
+```
+
+```{r}
+pe[pe$species=='Adelie', c("bill_length_mm", "bill_depth_mm")]
+```
+
+```{r}
+subset(pe, pe$species=='Adelie', c("bill_length_mm", "bill_depth_mm"))
+```
+
+```{r}
+select(pe, bill_length_mm, bill_depth_mm, species) |> filter(species=="Adelie")
+```
+
+```{r}
+filter(pe, species=="Adelie") |> select(bill_length_mm, bill_depth_mm, species)
+```
+
+```{r}
+students <- list(names=c("Judy", "Max", "Dan"),
+                 grades=c(78, 85, 99))
+print ("before:")
+```
+
+```{r}
+students
+```
+
+```{r}
+gradeConvertor<- function (grade){
+  grade = as.numeric(grade)
+  if(grade > 100 | grade < 0) print ("grade out of the range")
+  else if(grade >= 90 & grade <= 100) return ("A")
+  else if(grade >= 80 & grade < 90) return ("B")
+  else if(grade >= 70 & grade < 80) return ("C")
+  else return ("F")
+}
+
+#students$grades <-sapply(students$grades, gradeConvertor)
+
+for(i in 1:length(students$grades)){
+  students$grades[i] = gradeConvertor(students$grades[i])
+}
+
+print ("after:")
+```
+
+```{r}
+students
 ```
